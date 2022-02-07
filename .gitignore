@@ -302,3 +302,4 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/python,macos,django,visualstudiocode
 workspace.code-workspace
+flights/api/schema.py
