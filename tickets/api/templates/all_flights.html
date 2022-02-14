@@ -1,0 +1,16 @@
+{% extends "tickets_main_page.html" %}
+
+{% block content %}
+  <h1>Flights</h1>
+  {% if flights %}
+  <ul>
+    {% for flight in flights %}
+      <li>
+        {{ flight.flightCode }} -- {{flight.airlineName}}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no flights in the system.</p>
+  {% endif %}
+{% endblock %}
