@@ -1,0 +1,118 @@
+syntax = "proto3";
+package flights;
+
+service Flights {
+    rpc getFlights (userflightrequest) returns (stream FlightResponse) {}
+    rpc getDetails (userdetailrequest) returns (stream DetailResponse) {}
+    rpc getSeats (userseatrequest) returns (stream SeatResponse) {}
+    rpc getFlightsTickets (passengerflightrequest) returns (stream FlightTicketResponse) {}
+    
+    rpc setFlights (flightcreate) returns (flightcreateresponse) {}
+    rpc setSeat (seatcreate) returns (seatcreateresponse) {}
+    rpc setDetails (detailcreate) returns (detailcreateresponse) {}
+}
+
+message userflightrequest {
+    int32 id = 1;
+}
+
+message userdetailrequest {
+    int32 id = 1;
+}
+
+message userseatrequest {
+    int32 id = 1;
+}
+
+message passengerflightrequest {
+    int32 id = 1;
+}
+
+message FlightResponse {
+    int32 id = 1;
+    string flightCode = 2;
+    string airlineName = 3;
+    string departureLocation = 4;
+    string arrivalLocation = 5;
+    string departureTime = 6;
+    string arrivalTime = 7;
+    string duration = 8;
+    string planeModel = 9;
+    int32 totalSeats = 10;
+    int32 userID = 11;
+    // string flightdetails = 12;
+}
+
+message DetailResponse {
+    int32 id = 1;
+    string departureDate = 2;
+    int32 price = 3;
+    bool flightStatus = 4;
+    int32 userID = 5;
+    int32 flightfk = 6;
+}
+
+message SeatResponse {
+    int32 id = 1;
+    int32 seatClass = 2;
+    int32 seatNumber = 3;
+    bool booked = 4;
+    int32 flightdetailid = 5;
+}
+
+message FlightTicketResponse {
+    string flightCode = 1;
+    string airlineName = 2;
+    string departureLocation = 3;
+    string arrivalLocation = 4;
+    string departureTime = 5;
+    string arrivalTime = 6;
+    string duration = 7;
+    string planeModel = 8;
+    int32 id = 9;
+    string departureDate = 10;
+    int32 price = 11;
+    bool flightStatus = 12;
+    int32 userID = 13;
+    int32 flightfk = 14;
+}
+
+message flightcreate {
+    string flightCode = 1;
+    string airlineName = 2;
+    string departureLocation = 3;
+    string arrivalLocation = 4;
+    string departureTime = 5;
+    string arrivalTime = 6;
+    string duration = 7;
+    string planeModel = 8;
+    int32 totalSeats = 9;
+    int32 userID = 10;
+}
+
+message detailcreate {
+    string departureDate = 1;
+    int32 price = 2;
+    bool flightStatus = 3;
+    int32 userID = 4;
+    int32 flightfk = 5;
+}
+
+message seatcreate {
+    int32 seatClass = 1;
+    int32 seatNumber = 2;
+    bool booked = 3;
+    int32 flightdetailid = 4;
+}
+
+message flightcreateresponse {
+    bool success = 1;
+}
+
+message seatcreateresponse {
+    bool success = 1;
+}
+
+message detailcreateresponse {
+    bool success = 1;
+}
